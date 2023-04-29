@@ -6,15 +6,21 @@
         set dictionary format for if
         when you want call bfs first you should append position to queue
 '''
-FOOD_position_x = 0 
-FOOD_position_y = 0
-cell_list = []
-turn = 0
-checked = 0
-#BFS queue 
-PACMAN_position_x = 0
-PACMAN_position_y = 0
-q = [[PACMAN_position_x , PACMAN_position_y]]
+def RUN(food_x_entry ,food_y_entry,pacman_x_entry,pacman_y_entry,algorithm_name):
+    global FOOD_position_x,FOOD_position_y,cell_list,turn,checked,q
+    FOOD_position_x = food_x_entry 
+    FOOD_position_y = food_y_entry 
+    cell_list = []
+    turn = 0
+    checked = 0
+    #BFS queue 
+    q = [[pacman_x_entry,pacman_y_entry]]
+    if algorithm_name == "DFS":
+        DFS(pacman_x_entry,pacman_y_entry)
+    elif algorithm_name == "BFS":
+        BFS(pacman_x_entry,pacman_y_entry)
+    elif algorithm_name == "A":
+        A(pacman_x_entry,pacman_y_entry)
 
 def DFS(PACMAN_position_x , PACMAN_position_y):
     #check final 
@@ -120,6 +126,7 @@ def BFS(PACMAN_position_x , PACMAN_position_y):
     
     return
     
-
+def A():
+    return
     
 

@@ -1,4 +1,5 @@
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage,Image
+import searching
 
 window = Tk()
 window.geometry("1000x300")
@@ -7,21 +8,30 @@ canvas = Canvas(window,bg = "#FFFFFF",height = 300,width = 1000,bd = 0,highlight
 canvas.place(x = 0, y = 0)
 
 #algorithm selection
+algorithm_name = ""
 button_image_BFS = PhotoImage(file="assets/frame0/BFS.png")
-button_BFS = Button(image=button_image_BFS,borderwidth=0,highlightthickness=0,command=lambda: print("BFS"),relief="flat")
+button_BFS = Button(image=button_image_BFS,borderwidth=0,highlightthickness=0,command=lambda: algorithm_name.append("BFS"),relief="flat")
 button_BFS.place(x=800.0,y=147.0,width=60.0,height=36.0)
 
 button_image_DFS = PhotoImage(file="assets/frame0/DFS.png")
-button_DFS = Button(image=button_image_DFS,borderwidth=0,highlightthickness=0,command=lambda: print("button_2 clicked"),relief="flat")
+button_DFS = Button(image=button_image_DFS,borderwidth=0,highlightthickness=0,command=lambda: algorithm_name.append("DFS"),relief="flat")
 button_DFS.place(x=800.0,y=193.0,width=60.0,height=36.0)
 
 button_image_A = PhotoImage(file="assets/frame0/A.png")
-button_A = Button(image=button_image_A,borderwidth=0,highlightthickness=0,command=lambda: print("button_3 clicked"),relief="flat")
+button_A = Button(image=button_image_A,borderwidth=0,highlightthickness=0,command=lambda: algorithm_name.append("A"),relief="flat")
 button_A.place(x=800.0,y=239.0,width=60.0,height=36.0)
 
 #run button
 button_image_RUN = PhotoImage(file="assets/frame0/RUN.png")
-button_RUN= Button(image=button_image_RUN,borderwidth=0,highlightthickness=0,command=lambda: print("button_4 clicked"),relief="flat")
+button_RUN= Button(image=button_image_RUN,
+                   borderwidth=0,
+                   highlightthickness=0,
+                   command=lambda: searching.RUN(food_x_entry,
+                                                 food_y_entry,
+                                                 pacman_x_entry,
+                                                 pacman_y_entry,
+                                                 algorithm_name)
+                   ,relief="flat")
 button_RUN.place(x=867.0,y=239.0,width=122.0,height=36.0)
 
 #ENTER POSITION OF FOOD AND PACMAN 
