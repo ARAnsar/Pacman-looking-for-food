@@ -1,28 +1,41 @@
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage,Image
 import searching
-
+import map_generator
 window = Tk()
 window.geometry("1000x300")
 window.configure(bg = "#FFFFFF")
 canvas = Canvas(window,bg = "#FFFFFF",height = 300,width = 1000,bd = 0,highlightthickness = 0,relief = "ridge")
 canvas.place(x = 0, y = 0)
-
+#generate map
+cell_list = []
+for i in range(0,60):
+    if map_generator.map[i] == 0:
+        cell_list.append(canvas.create_rectangle(10+(i%12)*60, 
+                                                10+(i//12)*60,
+                                                50+(i%12)*60,
+                                                50+(i//12)*60,fill="#686868",outline=""))
+    else:
+        cell_list.append(canvas.create_rectangle(10+(i%12)*60, 
+                                                10+(i//12)*60,
+                                                50+(i%12)*60,
+                                                50+(i//12)*60,fill="#ffffff",outline=""))
+    
 #algorithm selection
 algorithm_name = ""
-button_image_BFS = PhotoImage(file="assets/frame0/BFS.png")
+button_image_BFS = PhotoImage(file="build/assets/frame0/BFS.png")
 button_BFS = Button(image=button_image_BFS,borderwidth=0,highlightthickness=0,command=lambda: algorithm_name.append("BFS"),relief="flat")
 button_BFS.place(x=800.0,y=147.0,width=60.0,height=36.0)
 
-button_image_DFS = PhotoImage(file="assets/frame0/DFS.png")
+button_image_DFS = PhotoImage(file="build/assets/frame0/DFS.png")
 button_DFS = Button(image=button_image_DFS,borderwidth=0,highlightthickness=0,command=lambda: algorithm_name.append("DFS"),relief="flat")
 button_DFS.place(x=800.0,y=193.0,width=60.0,height=36.0)
 
-button_image_A = PhotoImage(file="assets/frame0/A.png")
+button_image_A = PhotoImage(file="build/assets/frame0/A.png")
 button_A = Button(image=button_image_A,borderwidth=0,highlightthickness=0,command=lambda: algorithm_name.append("A"),relief="flat")
 button_A.place(x=800.0,y=239.0,width=60.0,height=36.0)
 
 #run button
-button_image_RUN = PhotoImage(file="assets/frame0/RUN.png")
+button_image_RUN = PhotoImage(file="build/assets/frame0/RUN.png")
 button_RUN= Button(image=button_image_RUN,
                    borderwidth=0,
                    highlightthickness=0,
