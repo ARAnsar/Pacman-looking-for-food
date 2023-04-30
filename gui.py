@@ -16,9 +16,11 @@ def change_color():
     for i in range(0,98):
         canvas.itemconfig(cell_list_c[i] , fill = colors[i][0])
         canvas.itemconfig(cell_list_n[i] , text = str(colors[i][1]))
+    canvas.itemconfig(cell_list_c[int(food_x_entry.get())*14+int(food_y_entry.get())] , fill = 'blue')
+    canvas.itemconfig(cell_list_c[int(pacman_x_entry.get())*14+int(pacman_y_entry.get())] , fill = 'yellow')
     #calcute time and chek node
     canvas.itemconfig(nodes, text =str(searching_algorithm.checked))
-    canvas.itemconfig(time, text =str(100*(searching_algorithm.end - searching_algorithm.start)))
+    canvas.itemconfig(time, text =str(1000*(searching_algorithm.end - searching_algorithm.start)))
     return
 
 #generate map
