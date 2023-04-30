@@ -10,8 +10,8 @@ def cell_list():
        cell_list = {}
        for i in range(0,len(map)):
               if map[i] == 0:
-                     cell_list.update({(i//14,i%14) : ['black' ,  None]})
+                     cell_list.update({(i//14,i%14) : ['black' ,  '']})
               else:
-                     cell_list.update({(i//14,i%14) : ['white' ,  None]})
+                     cell_list.update({(i//14,i%14) : ['white' ,  '']})
        return cell_list
 

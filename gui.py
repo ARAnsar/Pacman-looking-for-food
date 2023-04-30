@@ -3,7 +3,6 @@ import map_generator
 import searching_algorithm
 import time as t
 
-start = t.time()
 window = Tk()
 window.geometry("1100x420")
 window.configure(bg = "#FFFFFF")
@@ -15,39 +14,49 @@ def change_color():
     #change color
     colors = list(searching_algorithm.cell_list.values())
     for i in range(0,98):
-        canvas.itemconfig(cell_list_g[i] , fill = colors[i][0])
-    canvas.itemconfig(16, fill ='yellow')
-    canvas.itemconfig(32, fill ='blue')
+        canvas.itemconfig(cell_list_c[i] , fill = colors[i][0])
+        canvas.itemconfig(cell_list_n[i] , text = str(colors[i][1]))
     #calcute time and chek node
-    end = t.time()
     canvas.itemconfig(nodes, text =str(searching_algorithm.checked))
-    canvas.itemconfig(time, text =str(end - start))
+    canvas.itemconfig(time, text =str(100*(searching_algorithm.end - searching_algorithm.start)))
     return
 
 #generate map
-cell_list_g = []
+cell_list_c = []
+cell_list_n = []
 for i in range(0,98):
     if map_generator.map[i] == 0:
-        cell_list_g.append(canvas.create_rectangle(10+(i%14)*60, 
+        cell_list_c.append(canvas.create_rectangle(10+(i%14)*60, 
                                                 10+(i//14)*60,
                                                 50+(i%14)*60,
                                                 50+(i//14)*60,fill="black",outline=""))
     else:
-        cell_list_g.append(canvas.create_rectangle(10+(i%14)*60, 
+        cell_list_c.append(canvas.create_rectangle(10+(i%14)*60, 
                                                 10+(i//14)*60,
                                                 50+(i%14)*60,
                                                 50+(i//14)*60,fill="white",outline=""))
+    cell_list_n.append(canvas.create_text(40+(i%14)*60, 
+                        40+(i//14)*60,                           
+                        text='',fill="#000000",font=("Inter", 14 * -1)))
     
 #algorithm selection
 button_image_BFS = PhotoImage(file="build/assets/frame0/BFS.png")
 button_BFS = Button(image=button_image_BFS,borderwidth=0,highlightthickness=0,
-                    command=lambda: searching_algorithm.runb(3,3,1,1,'BFS'),
+                    command=lambda: searching_algorithm.runb(int(food_x_entry.get()),
+                                                             int(food_y_entry.get()),
+                                                             int(pacman_x_entry.get()),
+                                                             int(pacman_y_entry.get()),
+                                                             'BFS'),
                     relief="flat")
 button_BFS.place(x=800 + 75,y=147 + 50,width=60.0,height=36.0)
 
 button_image_DFS = PhotoImage(file="build/assets/frame0/DFS.png")
 button_DFS = Button(image=button_image_DFS,borderwidth=0,highlightthickness=0,
-                    command=lambda: searching_algorithm.runb(3,3,1,1,'DFS'),
+                    command=lambda: searching_algorithm.runb(int(food_x_entry.get()),
+                                                             int(food_y_entry.get()),
+                                                             int(pacman_x_entry.get()),
+                                                             int(pacman_y_entry.get()),
+                                                             'DFS'),
                     relief="flat")
 button_DFS.place(x=800 + 75,y=193.0 + 50,width=60.0,height=36.0)
 
